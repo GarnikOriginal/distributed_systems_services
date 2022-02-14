@@ -33,7 +33,7 @@ class MusicNetWrapper():
             self.config = json.load(f)
         self.model = MusicNet(self.config["input_shape"], len(self.config["classes"]), device="cpu")
         self.model.eval()
-        self.model.load_state_dict(torch.load(join(model_folder, "audio_weights.pth")))
+        self.model.load_state_dict(torch.load(join(model_folder, "audio_weights.pth"), map_location=torch.device('cpu')))
         self.sr = self.config["sample_rate"]
 
     def forward(self, audio_bytes, sr):
