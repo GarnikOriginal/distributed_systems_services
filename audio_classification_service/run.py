@@ -14,4 +14,4 @@ def init_app(app: web.Application):
 if __name__ == '__main__':
     app = web.Application()
     app = init_app(app)
-    web.run_app(app, host="0.0.0.0",  port="62225")
+    web.run_app(app, host="0.0.0.0", port="62225")
