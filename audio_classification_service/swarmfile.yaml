@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   yolo_service:
-    image: yolo_service
+    image: audio_service
     deploy:
       replicas: 1
       update_config:
