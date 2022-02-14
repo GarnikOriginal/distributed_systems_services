@@ -34,22 +34,21 @@ class MusicNetWrapper():
         with open(join(model_folder, "audio_config.json"), "r") as f:
             self.config = json.load(f)
         self.model = MusicNet(self.config["input_shape"], len(self.config["classes"]), device="cpu")
+        self.model.eval()
         self.model.load_state_dict(torch.load(join(model_folder, "audio_weights.pth")))
         self.sr = self.config["sample_rate"]
 
-    def forward(self, audio_bytes, sr, mono=True):
-        if mono:
-            audio = np.array(audio_bytes)
-            audio = librosa.resample(audio, sr, self.sr)
-            mfcc = librosa.feature.mfcc(audio, sr=self.sr, n_mfcc=128)
-            mel = librosa.feature.melspectrogram(audio, sr=self.sr)
-            chroma = librosa.feature.chroma_stft(audio, sr=self.sr, n_chroma=128)
-            features = np.stack([mfcc, mel, chroma])
-            features = torch.tensor([features], dtype=torch.float32)
-            prediction = self.model(features)[0].numpy().tolist()
-            return prediction
-        else:
-            return None
+    def forward(self, audio_bytes, sr):
+        audio = np.array(audio_bytes)
+        audio = librosa.to_mono(audio)
+        audio = librosa.resample(audio, sr, self.sr)
+        mfcc = librosa.feature.mfcc(audio, sr=self.sr, n_mfcc=128)
+        mel = librosa.feature.melspectrogram(audio, sr=self.sr)
+        chroma = librosa.feature.chroma_stft(audio, sr=self.sr, n_chroma=128)
+        features = np.stack([mfcc, mel, chroma])
+        features = torch.tensor([features], dtype=torch.float32)
+        prediction = (self.model(features)[0].numpy() > 0.5).tolist()
+        return prediction
 
-    def __call__(self, audio_bytes, sr, mono=True):
-        return self.forward(audio_bytes, sr, mono=True)
+    def __call__(self, audio_bytes, sr):
+        return self.forward(audio_bytes, sr)
