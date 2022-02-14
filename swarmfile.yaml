@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  yolo_service:
+    image: yolo_service
+    deploy:
+      replicas: 1
+      update_config:
+        order: start-first
+    ports:
+      - "62225:62225"
