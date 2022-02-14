@@ -1,0 +1,18 @@
+{
+  "input_shape": [1, 3, 128, 87],
+  "sample_rate": 44100,
+  "classes": [
+    "Hi-hat",
+    "Saxophone",
+    "Clarinet",
+    "Flute",
+    "Snare drum",
+    "Double bass",
+    "Electric piano",
+    "Trumpet",
+    "Acoustic guitar",
+    "Tambourine",
+    "Violin",
+    "Bass_drum"
+  ]
+}
