@@ -3,8 +3,8 @@ build:
 	docker build ./audio_classification_service/ -t audio_service && \
 	docker build ./yolo_service/ -t yolo_service
 update:
-	docker service update backend_service_backend_service --force && \
-	docker service update audio_service_audio_service --force && \
-	docker service update yolo_service_yolo_service --force
+	docker service update distr-lab4_audio_service --force && \
+	docker service update distr-lab4_backend_service --force && \
+	docker service update distr-lab4_yolo_service --force
 run:
 	docker stack deploy -c ./swarmfile.yaml distr-lab4
