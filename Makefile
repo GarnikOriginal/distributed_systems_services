@@ -7,6 +7,4 @@ update:
 	docker service update audio_service_audio_service --force && \
 	docker service update yolo_service_yolo_service --force
 run:
-	docker stack deploy -c ./distributed_systems_server/swarmfile.yaml backend_service && \
-	docker stack deploy -c ./audio_classification_service/swarmfile.yaml audio_service && \
-	docker stack deploy -c ./yolo_service/swarmfile.yaml yolo_service
+	docker stack deploy -c ./swarmfile.yaml distr-lab4
