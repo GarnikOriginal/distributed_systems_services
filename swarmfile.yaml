@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   nginx_service:
-    image: nginx_balancer
+    image: cr.yandex/crp47mcttv0eg7au1nmh/nginx_balancer
     deploy:
       replicas: 1
       placement:
@@ -13,7 +13,7 @@ services:
     ports:
       - "62205:62225"
   backend_service:
-    image: backend_service
+    image: cr.yandex/crp47mcttv0eg7au1nmh/backend_service
     deploy:
       replicas: 4
       placement:
@@ -23,7 +23,7 @@ services:
     ports:
       - "62215:62225"
   yolo_service:
-    image: yolo_service
+    image: cr.yandex/crp47mcttv0eg7au1nmh/yolo_service
     deploy:
       replicas: 3
       placement:
@@ -35,7 +35,7 @@ services:
     ports:
       - "62225:62225"
   audio_service:
-    image: audio_service
+    image: cr.yandex/crp47mcttv0eg7au1nmh/audio_service
     deploy:
       replicas: 3
       placement:
