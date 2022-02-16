@@ -4,7 +4,8 @@ services:
   backend_service:
     image: backend_service
     deploy:
-      replicas: 3
+      replicas: 4
+      max_replicas_per_node: 1
       update_config:
         order: start-first
     ports:
@@ -12,7 +13,11 @@ services:
   yolo_service:
     image: yolo_service
     deploy:
-      replicas: 2
+      replicas: 3
+      placement:
+        max_replicas_per_node: 1
+        constraints:
+          - "node.role==worker"
       update_config:
         order: start-first
     ports:
@@ -20,7 +25,11 @@ services:
   audio_service:
     image: audio_service
     deploy:
-      replicas: 2
+      replicas: 3
+      placement:
+        max_replicas_per_node: 1
+        constraints:
+          - "node.role==worker"
       update_config:
         order: start-first
     ports:
