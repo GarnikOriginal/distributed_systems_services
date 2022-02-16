@@ -5,7 +5,8 @@ services:
     image: backend_service
     deploy:
       replicas: 4
-      max_replicas_per_node: 1
+      placement:
+        max_replicas_per_node: 1
       update_config:
         order: start-first
     ports:
