@@ -4,5 +4,5 @@ COPY requirements.txt .
 RUN python -m pip install --upgrade pip && \
     pip install -r requirements.txt --no-cache-dir
 EXPOSE 62215
-COPY ../distributed_systems_server .
+COPY ../backend_service .
 CMD [ "python3", "run.py" ]
