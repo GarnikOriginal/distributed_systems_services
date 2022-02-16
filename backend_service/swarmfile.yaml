@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  backend_service:
+    image: backend_service
+    deploy:
+      replicas: 1
+      update_config:
+        order: start-first
+    ports:
+      - "62215:62225"
