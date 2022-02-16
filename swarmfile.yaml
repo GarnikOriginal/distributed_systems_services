@@ -12,6 +12,7 @@ services:
         order: start-first
     ports:
       - "62205:80"
+    command: [nginx-debug, '-g', 'daemon off;']
   backend_service:
     image: cr.yandex/crp47mcttv0eg7au1nmh/backend_service
     deploy:
