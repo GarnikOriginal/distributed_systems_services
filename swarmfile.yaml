@@ -11,7 +11,7 @@ services:
       update_config:
         order: start-first
     ports:
-      - "62205:62225"
+      - "62205:80"
   backend_service:
     image: cr.yandex/crp47mcttv0eg7au1nmh/backend_service
     deploy:
