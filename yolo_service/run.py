@@ -6,11 +6,11 @@ from modules.decode_utils import decode_image
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources=r'/predict')
 model = load_model()
 
 
-@app.post("/predict")
+@app.route("/predict", methods=['POST'])
 def predict_route():
     try:
         if "image" not in request.files or request.files["image"].filename == "":
