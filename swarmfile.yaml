@@ -1,6 +1,17 @@
 version: '3.9'
 
 services:
+  nginx_service:
+    image: nginx_balancer
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - "node.role==manager"
+      update_config:
+        order: start-first
+    ports:
+      - "62205:62225"
   backend_service:
     image: backend_service
     deploy:
