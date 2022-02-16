@@ -1,6 +1,6 @@
 build:
 	docker build ./nginx_balancer/ -t cr.yandex/crp47mcttv0eg7au1nmh/nginx_balancer && \
-	docker build ./distributed_systems_server/ -t cr.yandex/crp47mcttv0eg7au1nmh/backend_service && \
+	docker build ./backend_service/ -t cr.yandex/crp47mcttv0eg7au1nmh/backend_service && \
 	docker build ./audio_classification_service/ -t cr.yandex/crp47mcttv0eg7au1nmh/audio_service && \
 	docker build ./yolo_service/ -t cr.yandex/crp47mcttv0eg7au1nmh/yolo_service
 	docker push cr.yandex/crp47mcttv0eg7au1nmh/nginx_balancer && \
