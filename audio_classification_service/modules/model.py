@@ -37,7 +37,7 @@ class MusicNetWrapper():
         self.sr = self.config["sample_rate"]
 
     def forward(self, audio_bytes, sr):
-        audio = np.array(audio_bytes)
+        audio = np.array(audio_bytes, dtype=np.float32)
         audio = librosa.to_mono(audio)
         audio = librosa.resample(audio, sr, self.sr)
         mfcc = librosa.feature.mfcc(audio, sr=self.sr, n_mfcc=128)
