@@ -21,13 +21,13 @@ export async function submitFileHandler(event) {
         res_cont.hidden = false;
         audio_cont.hidden = true;
         yolo_cont.hidden = false;
-        loadImage(event, selectedFile);
+        await loadImage(event, selectedFile);
     }
     else if (selectedFile.type.startsWith('audio/') && type === 'AUDIO'){
         res_cont.hidden = false;
         audio_cont.hidden = false;
         yolo_cont.hidden = true;
-        loadAudio(event, selectedFile);
+        await loadAudio(event, selectedFile);
     }
     else {
         alert('Неверный тип файла!');

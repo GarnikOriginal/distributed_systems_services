@@ -26,20 +26,19 @@ export async function loadAudio(event, selectedFile)
         let socket = new WebSocket(address);
 
         socket.onopen = function(e) {
-              for (var i = 0; i < decodedData.length / rate; i++){
+              for (var i = 0; i < Math.trunc(decodedData.length / rate); i++){
                    var tmp = new Array(decodedData.numberOfChannels);
                    for (var j = 0; j < tmp.length; j++) {
                       tmp[j] = data[j].slice(rate * i, rate * (i + 1));
                    }
 
-
-
-                  var data_res = new Array(decodedData.numberOfChannels);
+                  var data_res = [];
                   for (var j = 0; j < tmp.length; j++) {
                       var arr = [];
                       for (var k=0; k<tmp[j].length; k++) arr[k] = tmp[j][k];
                       data_res[j]=arr;
                   }
+
                   socket.send(JSON.stringify({
                     data: data_res,
                     sr: rate,
@@ -51,9 +50,9 @@ export async function loadAudio(event, selectedFile)
         };
 
         socket.onmessage = function(event) {
-          addData(event.data);
+          addData(JSON.parse(event.data));
           console.log(`[message] Данные получены с сервера: ${event.data}`);
-          if( event.data.timestamp === decodedData.length / rate - 1)
+          if( JSON.parse(event.data).timestamp === Math.trunc(decodedData.length / rate)  - 1)
             socket.close();
         };
 
@@ -67,6 +66,9 @@ export async function loadAudio(event, selectedFile)
           }
         };
 
+        socket.onerror = function(error) {
+          alert(`[error] ${error.message}`);
+        };
     });
 
 }

@@ -20,11 +20,9 @@ export async function loadImage(event, selectedFile)
          drawBounds(newBorder);
     }
     catch(error){
-         console.log(error);
+         alert(error);
     }
-    finally{
-        console.log("Cant upload image")
-    }
+
 }
 
 async function postImage(formData, img, address)
