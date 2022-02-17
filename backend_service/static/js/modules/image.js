@@ -1,6 +1,6 @@
 export async function loadImage(event, selectedFile)
 {
-    var yolo_service_address = "http://localhost:9000/predict"
+    var yolo_service_address = event.target.querySelector('.file_sendTo').value;
     let formData = new FormData()
     formData.append('image', selectedFile)
 

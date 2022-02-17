@@ -3,13 +3,6 @@
         {
             "type": "YOLO",
             "accept": "image",
-            "description": "Обработка картинок YOLO local",
-            "countInstanses": 1,
-            "address": "http://localhost:9000/predict"
-        },
-        {
-            "type": "YOLO",
-            "accept": "image",
             "description": "Обработка картинок YOLO",
             "countInstanses": 1,
             "address": "http://51.250.3.240:62205/yolo_predict"
