@@ -36,8 +36,9 @@ class MusicNetWrapper():
         self.model.load_state_dict(torch.load(join(model_folder, "audio_weights.pth"), map_location=torch.device('cpu')))
         self.sr = self.config["sample_rate"]
 
-    def forward(self, audio_bytes, sr):
-        audio = np.array(audio_bytes, dtype=np.float32)
+    def forward(self, audio, sr):
+        if audio.shape[0] == 1:
+            audio = audio[0, :]
         audio = librosa.to_mono(audio)
         audio = librosa.resample(audio, sr, self.sr)
         mfcc = librosa.feature.mfcc(audio, sr=self.sr, n_mfcc=128)
@@ -48,5 +49,5 @@ class MusicNetWrapper():
         prediction = (self.model(features)[0].numpy() > 0.5).tolist()
         return prediction
 
-    def __call__(self, audio_bytes, sr):
-        return self.forward(audio_bytes, sr)
+    def __call__(self, audio, sr):
+        return self.forward(audio, sr)
