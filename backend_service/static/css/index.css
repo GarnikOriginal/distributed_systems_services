@@ -29,3 +29,61 @@ audio{
 .file_input{
   margin-bottom: 10px;
 }
+.card{
+  height:100%;
+}
+.tracklines {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    align-items: flex-start;
+}
+.trackblock,
+.timeblock {
+  width: 10px;
+  height: 15px;
+  min-width: 10px;
+  position: relative;
+/*   flex: 1; */
+}
+.timeblock_active:before {
+    content: '';
+    width: 1px;
+    height: 5px;
+    background: grey;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%);
+}
+.timeblock_active:after {
+    top: -50%;
+    content: attr(title);
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%);
+}
+.timeline {
+  border-bottom: 1px solid grey;
+  display: flex;
+}
+.trackblock_active:after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  left: 0%;
+  background: blue;
+}
+.trackline {
+  display: none;
+  border-top: none;
+}
+.trackline_active {
+  display: flex;
+}
+.trackline_active {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-top: none;
+}

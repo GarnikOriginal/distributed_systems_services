@@ -12,7 +12,7 @@
             "accept": "audio",
             "description": "Обработка музыки. Анализ инструментов",
             "countInstanses": 1,
-            "address": "http://51.250.3.240:62205/audio_predict"
+            "address": "ws://51.250.3.240:62205/audio_predict"
         }
   ]
 }

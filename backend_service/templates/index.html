@@ -4,19 +4,19 @@
 <div class="album py-5 bg-light">
     <div class="container">
         <legend class="card-header h5 border-secondary bg-dark text-light">Сервисы</legend>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="row row-cols-sm-2 g-3">
             {% for _network in networks %}
             <div class="col">
                 <div class="card shadow-sm">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{ _network.type.value }}</h5>
+                        <h5 class="card-title">{{ _network.type }}</h5>
                         <p class="card-text">{{ _network.description }}</p>
                         {% if _network.countInstanses == 0 %}
-                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                        <div class="alert alert-warning mt-auto" role="alert">
                             Сервис сейчас недоступен
                         </div>
                         {% else %}
-                        <form class="file_form" id="model_{{ _network.type.value }}">
+                        <form class="file_form mt-auto" enctype="multipart/form-data" id="{{ _network.type }}">
                             <input class="file_sendTo" type="hidden" value="{{ _network.address }}"/>
                             <input class="file_input form-control form-control-sm" type="file"
                                    accept="{{ _network.accept }}/*">
@@ -30,7 +30,7 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container result" hidden>
     <legend class="card-header h5 border-secondary bg-dark text-light">Результат</legend>
     <div class="yolo_image-container img-thumbnail rounded" align="center">
         <div class="yolo_image">
@@ -41,11 +41,11 @@
         <div class="audio_classify">
 
         </div>
+        <section class="tracklines">
+            <div class="timeline"></div>
+        </section>
     </div>
 </div>
-<template id="yolo-template">
-    <img class="yolo_image img-thumbnail rounded mx-auto d-block" alt="...">
-</template>
 {% endblock %}
 
 
